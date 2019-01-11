@@ -1,0 +1,113 @@
+# Translation of WordPress 3.4.1
+# Copyright (C) 2012 WordPress
+# This file is distributed under the same license as the WordPress package.
+# WordPress Francophone <traduction@wordpress-fr.net>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Auto Domain Changer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-18 12:55-0500\n"
+"PO-Revision-Date: 2015-12-18 12:57-0500\n"
+"Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
+"Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Bookmarks: -1,430,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: ./\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../auto-domain-change.php:124
+#, php-format
+msgid ""
+"The domain name of your WordPress blog appears to have changed! <a href="
+"\"%1$s\">Click here to update your config</a> or <a href=\"%2$s\">dismiss</"
+"a>."
+msgstr ""
+"El nombre de dominio de tu blog WordPress parece haber cambiado! <a href="
+"\"%1$s\">Haga clic aquí para actualizar la configuración</a> o <a href=\"%2$s"
+"\">ignorar</a>."
+
+#: ../auto-domain-change.php:140 ../auto-domain-change.php:180
+msgid "Change Domain"
+msgstr "Cambiar el dominio"
+
+#: ../auto-domain-change.php:191
+msgid "Change domain from: "
+msgstr "Cambiar el dominio de:"
+
+#: ../auto-domain-change.php:196
+msgid "Change domain to: "
+msgstr "Cambiar el dominio al:"
+
+#: ../auto-domain-change.php:202
+msgid "Also change secure <code>https</code> links"
+msgstr "También cambiar los enlaces seguros <code>https</code>"
+
+#: ../auto-domain-change.php:207
+msgid ""
+"Change both <code>www.old-domain.com</code> and <code>old-domain.com</code> "
+"links"
+msgstr ""
+"Cambiar los enlaces de tipo <code>www.old-domain.com</code> y <code>old-"
+"domain.com</code>"
+
+#: ../auto-domain-change.php:211
+msgid ""
+"I have backed up my database, checked the backups integrity, know how to "
+"restore it, and will assume the responsability of any data loss or "
+"corruption."
+msgstr ""
+"He hecho una copia de seguridad de mi base de datos, he verificado su "
+"integridad, y asumo todo responsabilidad por cualquier pérdida o corrupción "
+"de datos."
+
+#: ../auto-domain-change.php:215
+msgid "Backup database as SQL"
+msgstr "Copia de seguridad como SQL"
+
+#: ../auto-domain-change.php:217
+msgid "Backup database as PHP"
+msgstr "Copia de seguridad como PHP"
+
+#: ../auto-domain-change.php:225
+msgid "Change domain"
+msgstr "Cambiar el dominio"
+
+#: ../auto-domain-change.php:268
+#, php-format
+msgid "Old domain: %1$s"
+msgstr "Antiguo dominio: %1$s"
+
+#: ../auto-domain-change.php:269
+#, php-format
+msgid "New domain: %1$s"
+msgstr "Nuevo dominio: %1$s"
+
+#: ../auto-domain-change.php:298
+#, php-format
+msgid "Skipping table %1$s because no unique id"
+msgstr ""
+"La table %1$s ha sido ignorado, ya que no contiene identificadores únicos"
+
+#: ../auto-domain-change.php:302
+#, php-format
+msgid "Processing table %1$s"
+msgstr "Procesamiento tabla %1$s"
+
+#: ../auto-domain-change.php:344
+msgid "Back"
+msgstr "Volver"
+
+#~ msgid ""
+#~ "I have backed up my database and will assume the responsability of any "
+#~ "data loss or corruption."
+#~ msgstr ""
+#~ "He hecho una copia de seguridad de mi base de datos y no asumen ninguna "
+#~ "responsabilidad por cualquier pérdida o corrupción de datos."
