@@ -1,0 +1,150 @@
+.adc-widefat {
+	height:28px;
+	padding:2px;
+	position:relative;
+	top:2px;
+	width:250px;
+max-width:100%;
+}
+
+.adc-select {
+	text-align:right;
+}
+.adc-notes {
+  width: 70%;
+	float: left;
+	margin: 0 20px 20px 20px;
+  
+}
+.dbtable-container {
+	display: inline;
+	float: left;
+	margin: 0 20px 20px 20px;
+}
+.dbtable-container-right {
+	display: inline;
+	float: right;
+}
+.dbtable-box{
+	display: block;
+	width: 450px;
+	float: left:
+	padding: 20px;
+	background: #f0e68c;
+}
+.dbtable-content{
+	padding: 20px;
+	margin: 30px 0;
+	border: 1px solid #333;
+	min-height: 50px;
+}
+.dbtable-item {
+	display: inline-block;
+	background-color: black;
+	color: white;
+	margin: 3px;
+	padding: 2px 4px;
+}
+.dbtable-item:hover {
+	background-color: blue;
+	cursor: pointer;
+	color: white;
+}
+.dbtable-default {
+	background-color: green;
+	color: white;
+}
+.no-plugin {
+	background-color: red;
+	color: white;
+}
+#dbtable-include,#dbtable-exclude .no-plugin {
+	cursor: pointer;
+}
+#dbtable-include,#dbtable-exclude .no-plugin:hover {
+	background-color: yellow;
+	cursor: pointer;
+	color: white;
+
+}
+.dbtable-item-hover {
+	background-color: blue;
+	color: white;
+}
+#dbtable-include,#dbtable-exclude .dbtable-item-hover {
+	cursor: pointer;
+}
+.snippet-table {
+	background-color: orange;
+	color: white;
+}
+#dbtable-include,#dbtable-exclude .snippet-table {
+	cursor: pointer;
+}
+#dbtable-include,#dbtable-exclude .snippet-table:hover {
+	background-color: purple;
+	cursor: pointer;
+	color: white;
+}
+#progressBar {
+	margin: 20px;
+	width: 400px;
+	height: 22px;
+	border: 1px solid #111;
+	background-color: #292929;
+	border-radius: 4px;
+}
+#legend {
+	border: 1px solid black;
+	margin: 0 10px;
+	padding: 10px;
+	display: block;
+	clear: left;
+	float:left;
+	min-width: 450px;
+}
+.legend-item {
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+	clear: left;
+	float:left;
+	min-width: 200px;
+	text-align: center;
+}
+.wp-admin #datatable_length  select {
+	padding: 5px;
+	width: 5em;
+	line-height: .7em;
+}
+#open-datatable {
+	margin: 0 10px;
+}
+#adc-entities {
+	margin: 0 10px;
+}
+
+#progressBar div {
+	border-radius: 4px;
+	background-image: url('/wp-content/plugins/automatic-domain-changer/assets/images/pbar-ani.gif');
+	height: 100%;
+	color: #fff;
+	text-align: right;
+	line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+	width: 0;
+	background-color: #0099ff;
+}
+.progressBar-ani {
+	background-image: url('/wp-content/plugins/automatic-domain-changer/assets/images/pbar-ani.gif');
+}
+table#datatable {
+	// visibility: hidden;
+}
+ins {
+		color: green;
+		font-size: 20px;
+}
+del {
+		color: red;
+		font-size: 20px;;
+}
