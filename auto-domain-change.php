@@ -253,7 +253,7 @@ class auto_domain_change {
 This is the dataTables server-side processing class and requires php-PDO to run
 
 */
-		require( '/www/rebi/wp-content/plugins/automatic-domain-changer/lib/ssp.class.php');
+		require( plugin_dir_path( __FILE__ ).'/lib/ssp.class.php');
 		$out = SSP::simple( $_POST, $sql_details, $table, $primaryKey, $columns );
 
 		wp_send_json( $out);
