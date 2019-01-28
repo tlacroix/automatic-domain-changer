@@ -1116,7 +1116,7 @@ private function processValue(&$v, $old, $new, $forceProtocol,$table,$column,$id
 
 	$sv = @unserialize($v);
 	$jv =  @json_decode($v,1); //decode as array
-	$serialized = $json = false;
+	$object = $serialized = $json = false;
 	if (($sv !== false) || ($sv == $sfalse)) {
 		if ($_POST['debug']) printf(__('<br>processValue:'.$table.' '.$column.' '.$id.'='.$row.' Column value was serialized').'');
 		// Column value was serialized
@@ -1135,6 +1135,11 @@ private function processValue(&$v, $old, $new, $forceProtocol,$table,$column,$id
 	//		$v=json_decode(json_encode($v), True); //force object to array
 	//      $this->processValue($v, $old, $new, $forceProtocol,$table,$column,$id,$row);
 	//	}
+	 if (is_object($v)) {
+    		$object = true;
+		if ($_POST['debug']) printf(__('<br>processValue:'.$table.' '.$column.' '.$id.'='.$row.' is  object').'');    
+  			$v =(array)$v;
+  		} //is_object
 	if (is_array($v)) {
 		foreach ($v as $k=>&$vv) {
 			if (is_string($vv)) {
@@ -1175,6 +1180,7 @@ private function processValue(&$v, $old, $new, $forceProtocol,$table,$column,$id
 	} //if array, string, or something else
 
 	// Reserialize if needed
+	if ($object) $v = (object) $v;
 	if ($serialized) $v = serialize($v);
 	elseif ($json) $v = json_encode($v);
 
