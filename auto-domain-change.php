@@ -30,7 +30,8 @@ class auto_domain_change {
 	{
 		if (self::$_instance === null) {
 			self::$_instance = new auto_domain_change();
-			self::$_instance->setup();
+			add_action('plugins_loaded',array(self::$_instance,'setup'));
+//			self::$_instance->setup();
 			return true;
 		}
 
@@ -102,27 +103,33 @@ class auto_domain_change {
 		}
 	} // setup()
 	public function load_adc_admin_style($hook) {
+		//error_log($hook);
 		//wp_die($hook);
 		// Load only on ?page=mypluginname
 		if($hook != 'tools_page_auto-domain-change') {
 			return;
 		}
-		wp_enqueue_style( 'adc_wp_admin_css', plugins_url('/assets/css/adc-admin.css', __FILE__) );
-		wp_enqueue_style( 'adc_wp_admin_datatables_css', 'https://cdn.datatables.net/v/bs4/dt-1.10.18/kt-2.5.0/r-2.2.2/sc-1.5.0/datatables.min.css' );
-		wp_enqueue_style( 'adc_wp_admin_datatables_bootstrap_css', 'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css' );
+		
+		wp_enqueue_style( 'adc_wp_admin_bootstrap_css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',array(),null );		//
+		wp_enqueue_style( 'adc_wp_admin_css', plugins_url('/assets/css/adc-admin.css', __FILE__), array(),null );
+		wp_enqueue_style( 'adc_wp_admin_datatables_css', 'https://cdn.datatables.net/v/bs4/dt-1.10.18/kt-2.5.0/r-2.2.2/sc-1.5.0/datatables.min.css', array(),null );
+		wp_enqueue_style( 'adc_wp_admin_datatables_bootstrap_css', 'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',array(),null );
 
 
 	}
 	public function load_adc_admin_script($hook) {
 		//wp_die($hook);
 		// Load only on ?page=mypluginname
+		// tools_page_auto-domain-change
 		if($hook != 'tools_page_auto-domain-change') {
 			return;
 		}
+
+		wp_enqueue_script('adc_datatables_bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',array(), null);
 		wp_enqueue_script( 'adc_wp_admin_script', plugins_url('/assets/js/adc-admin.js', __FILE__) );
 		//      wp_register_script( 'adc_datatables', 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js', array());
-		wp_enqueue_script('adc_datatables','https://cdn.datatables.net/v/bs4/dt-1.10.18/kt-2.5.0/r-2.2.2/sc-1.5.0/datatables.min.js');
-		wp_enqueue_script('adc_datatables_bootstrap','https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js');
+		wp_enqueue_script('adc_datatables','https://cdn.datatables.net/v/bs4/dt-1.10.18/kt-2.5.0/r-2.2.2/sc-1.5.0/datatables.min.js', array(),null);
+		wp_enqueue_script('adc_datatables_datatables_bootstrap','https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',array(), null);
 
 	}
 	/**
@@ -1526,5 +1533,10 @@ private function processValue(&$v, $old, $new, $forceProtocol,$table,$column,$id
 	} //  diffline()
 } //auto-domain_change class
 // Initialize
-auto_domain_change::boot();
+try {
+	spl_autoload_register(array( 'auto_domain_change','boot') );
+} catch ( Exception $e ) {
+	new WP_Error( $e->getCode(), $e->getMessage() );
+}
+//auto_domain_change::boot();
 
