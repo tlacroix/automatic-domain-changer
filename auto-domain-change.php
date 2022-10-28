@@ -4,7 +4,7 @@ Plugin Name: Automatic Domain Changer
 Plugin URI: http://www.nuagelab.com/wordpress-plugins/auto-domain-change
 Description: Automatically changes the domain of a WordPress blog
 Author: NuageLab <wordpress-plugins@nuagelab.com>
-Version: 2.0.2
+Version: 2.0.3
 License: GPLv2 or later
 Author URI: http://www.nuagelab.com/wordpress-plugins
 */
@@ -127,7 +127,7 @@ class auto_domain_change{
 			echo '<div class="update-nag">
 				' . sprintf( __( 'The domain name of your WordPress blog appears to have changed! <a href="%1$s">Click here to update your config</a> or <a href="%2$s">dismiss</a>.', 'auto-domain-change' ),
 					'/wp-admin/tools.php?page=' . basename( __FILE__ ),
-					add_query_arg( 'dismiss-domain-change', '1' )
+					esc_url(add_query_arg( 'dismiss-domain-change', '1' ))
 				) . '
 			</div>';
 		}
