@@ -11,6 +11,12 @@ Author URI: http://www.nuagelab.com/wordpress-plugins
 
 // --
 
+define('ADC_WPCLI', defined( 'WP_CLI' ) && WP_CLI);
+if (ADC_WPCLI) {
+    require_once __DIR__ . DIRECTORY_SEPARATOR . 'auto-domain-change-cli.php';
+    WP_CLI::add_command( 'auto-domain-change', 'cli_auto_domain_change' );
+}
+
 /**
  * Automatic Domain Changer class
  *
@@ -286,28 +292,33 @@ EOD;
 	 * Called by admin_page() upon form submission.
 	 *
 	 * @author	Tommy Lacroix <tlacroix@nuagelab.com>
-	 * @access	private
+	 * @access	public
 	 */
-	private function do_change($old, $new, $forceProtocol=null)
+	public function do_change($old, $new, $forceProtocol=null)
 	{
 		global $wpdb;
 
 		@set_time_limit(0);
 
-		echo '<div class="wrap">';
-
-		echo '<div id="icon-tools" class="icon32"><br></div>';
-		echo '<h2>Changing domain</h2>';
-		echo '<pre>';
-		printf(__('Old domain: %1$s','auto-domain-changer').'<br>', $old);
-		printf(__('New domain: %1$s','auto-domain-changer').'<br>', $new);
-		echo '<hr>';
+		if (! ADC_WPCLI) {
+			echo '<div class="wrap">';
+			echo '<div id="icon-tools" class="icon32"><br></div>';
+			echo '<h2>Changing domain</h2>';
+			echo '<pre>';
+			printf(__('Old domain: %1$s','auto-domain-changer').'<br>', $old);
+			printf(__('New domain: %1$s','auto-domain-changer').'<br>', $new);
+			echo '<hr>';
+		}
 
 		$ret = $wpdb->get_results('SHOW TABLES;');
 		$tables = array();
 		foreach ($ret as $row) {
 			$row = get_object_vars($row);
 			$tables [] = reset($row);
+		}
+
+		if (ADC_WPCLI) {
+			$progress = \WP_CLI\Utils\make_progress_bar( 'Processing tables', count($tables) );
 		}
 
 		foreach ($tables as $t) {
@@ -329,12 +340,20 @@ EOD;
 			}
 			if ($id === null) {
 				// No unique index found, skip table.
-				printf(__('Skipping table %1$s because no unique id','auto-domain-change').'<br/>', $t);
+				$msg = sprintf(__('Skipping table %1$s because no unique id','auto-domain-change').'<br/>', $t);
+				if (ADC_WPCLI) {
+					WP_CLI::warning( $msg );
+				}
+				else {
+					echo $msg;
+				}
 				continue;
 			}
 
-			printf(__('Processing table %1$s','auto-domain-change').'<br/>', $t);
-
+			if (! ADC_WPCLI) {
+				$msg = sprintf(__('Processing table %1$s','auto-domain-change'), $t);
+				echo $msg . '<br/>';
+			}
 
 			// Process all rows
 			$o = 0;
@@ -370,12 +389,22 @@ EOD;
 
 				$o += count($ret);
 			} while (count($ret) > 0);
+
+			if (ADC_WPCLI) {
+				$progress->tick();
+			}
+		}
+
+		if (ADC_WPCLI) {
+			$progress->finish();
 		}
 
 		update_option('auto_domain_change-domain', $new);
-		echo '</pre>';
-		echo '<hr>';
-		echo '<form method="post"><input type="submit" value="'.esc_html(__('Back','auto-domain-change')).'" />';
+		if (! ADC_WPCLI) {
+			echo '</pre>';
+			echo '<hr>';
+			echo '<form method="post"><input type="submit" value="'.esc_html(__('Back','auto-domain-change')).'" />';
+		}
 	} // do_change()
 	
 	
@@ -595,7 +624,6 @@ EOD;
 		return $v;
 	} // replace()
 } // auto_domain_change class
-
 
 // Initialize
 auto_domain_change::boot();
